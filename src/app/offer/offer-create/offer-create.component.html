@@ -1,0 +1,114 @@
+<div class="container-fluid text-dark">
+    <div class="row d-flex justify-content-center mt-4">
+        <div class="col-md-10">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <ul class="list-group" >
+                    <li class="list-group-item">
+                        <label for="offer-clientName" class="form-label">Zleceniodawca:</label>
+                        <select id="offer-clientName" class="form-control" formControlName="clientId">
+                            <option value="{{c.id}}" *ngFor="let c of clients">{{c.name}}</option>
+                        </select>
+                        <div *ngIf="f.clientId.invalid && (f.clientId.dirty || f.clientId.touched)" class="text-danger">
+                            To pole nie może byc puste
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <label for="offer-city" class="form-label" required>Miasto:</label>
+                        <input type="text" class="form-control" id="offer-city" formControlName="workCity">
+                        <div *ngIf="f.workCity.invalid && (f.workCity.dirty || f.workCity.touched)" class="text-danger">
+                            To pole nie może byc puste
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <label for="offer-street" class="form-label">Ulica:</label>
+                        <input type="text" class="form-control" id="offer-street" formControlName="workStreet">
+                        <div *ngIf="f.workStreet.invalid && (f.workStreet.dirty || f.workStreet.touched)" class="text-danger">
+                            To pole nie może byc puste
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <label for="offer-postalCode" class="form-label">Kod pocztowy:</label>
+                        <input type="text" class="form-control" id="offer-postalCode" formControlName="workPostalCode">
+                        <div *ngIf="f.workPostalCode.invalid && (f.workPostalCode.dirty || f.workPostalCode.touched)" class="text-danger">
+                            <div *ngIf="f.workPostalCode.errors?.required">
+                                To pole nie może byc puste
+                              </div>
+                              <div *ngIf="f.workPostalCode.errors?.pattern">
+                                Wpisz poprawny kod pocztowy
+                              </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <label class="form-label" for="offer-date">Data:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #d="ngbDatepicker" formControlName="workDate">
+                            <button class="btn btn-outline-secondary" type="button" (click)="d.toggle()"><i class="bi bi-calendar-event"></i></button>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <label for="offer-productsSum" class="form-label">Produktów:</label>
+                        <input type="text" class="form-control" id="offer-productsSum" formControlName="productsLength">
+                        <div *ngIf="f.productsLength.invalid && (f.productsLength.dirty || f.productsLength.touched)" class="text-danger">
+                            <div *ngIf="f.productsLength.errors?.required">
+                                To pole nie może byc puste
+                            </div>     
+
+                            <div *ngIf="f.productsLength.errors?.pattern">
+                                Tylko liczby
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <label for="offer-productsPrice" class="form-label">Cena produktów:</label>
+                        <input type="text" class="form-control" id="offer-productsPrice" formControlName="productsPrice">
+                        <div *ngIf="f.productsPrice.invalid && (f.productsPrice.dirty || f.productsPrice.touched)" class="text-danger">
+                            <div *ngIf="f.productsPrice.errors?.required">
+                                To pole nie może byc puste
+                            </div>     
+
+                            <div *ngIf="f.productsPrice.errors?.pattern">
+                                Tylko liczby
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <label for="offer-description" class="form-label">Opis:</label>
+                        <textarea id="offer-description" class="form-control" formControlName="description"></textarea>
+                    </li>
+                    <li class="list-group-item">
+                        <label for="offer-products" >Lista produktów:</label>
+                        <table class="table table-striped table-condensed table-sm" >
+                            <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Nazwa</th>
+                                  <th>Ilość</th>
+                                  <th>Cena</th>
+                                  <th>Cena łączna</th>
+                                  <th>Opis</th>
+                                  <th><button (click)="addProduct()"  type="button" class="btn btn-outline-secondary">+</button></th>
+                                </tr>
+                            </thead>
+                            <tbody  formArrayName="products"  *ngFor="let product of products.controls; let i=index" >
+                                <tr [formGroupName]="i">
+                                  <td>{{i + 1}}</td>
+                                  <td>
+                                    <select formControlName="name" class="form-control">
+                                        <option value="{{p.name}}" *ngFor="let p of productsDropDown" >{{p.name}}</option>
+                                    </select>
+                                </td>
+                                  <td><input  formControlName="quantity" (blur)="_commonFuncService.checkProductsPrice(form)"></td>
+                                  <td><input  formControlName="priceEach" (blur)="_commonFuncService.checkProductsPrice(form)"></td>
+                                  <td><input  formControlName="priceTotal" ></td>
+                                  <td><input  formControlName="descriptionP" ></td>
+                                  <td><button (click)="removeProduct(i)" type="button" class="btn btn-outline-secondary" >-</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-secondary float-right mt-3 mb-3" type="submit">stwórz</button>
+            </form>
+        </div>
+    </div>
+</div>

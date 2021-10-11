@@ -1,0 +1,15 @@
+.offer-links a  {
+    font-size: 0.8rem;
+}
+
+ngb-pagination ::ng-deep a {
+    color: black !important;
+}
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: grey;
+    background-color: lightgrey;
+}
+
+
+
+
