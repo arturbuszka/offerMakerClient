@@ -18,7 +18,7 @@ export class CommonFunctionsService {
   // set productsLength form control
   checkProductsLength(form: FormGroup) {
     const productsArray = this.ProductFormArray(form);
-    form.get('productsLength')?.setValue(productsArray.length);
+    form.get('productsCount')?.setValue(productsArray.length);
   };
 
   // method for checking products price
@@ -110,7 +110,7 @@ export class CommonFunctionsService {
       quantity: [''],
       priceEach: [''],
       priceTotal: [''],
-      descriptionP: [''],
+      description: [''],
     });
   }
 
@@ -118,13 +118,12 @@ export class CommonFunctionsService {
   createOfferFormGroup(fb: FormBuilder) {
     return fb.group({
       clientId: ['', [Validators.required]],
-      workCity: ['', [Validators.required]],
-      workStreet: ['', [Validators.required]],
-      workPostalCode: ['', [Validators.required, Validators.pattern("\\d{2}-\\d{3}")]],
-      workDate: ['', [Validators.required]],
-      totalPrice: 1,
+      city: ['', [Validators.required]],
+      street: ['', [Validators.required]],
+      postalCode: ['', [Validators.required, Validators.pattern("\\d{2}-\\d{3}")]],
+      dateOfWork: ['', [Validators.required]],
       description: [''],
-      productsLength: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      productsCount: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
       productsPrice: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
       products: fb.array([]),
     });

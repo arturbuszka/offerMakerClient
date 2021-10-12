@@ -4,6 +4,6 @@ export class Product {
     quantity: number=0;
     priceEach: number=0;
     priceTotal: number=0;
-    descriptionP: string ='';
+    description: string ='';
     offerId: number = 0;
 };

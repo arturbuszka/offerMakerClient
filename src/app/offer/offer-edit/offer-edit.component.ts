@@ -60,15 +60,15 @@ export class OfferEditComponent implements OnInit {
   getOffer(id: Number, fb: FormBuilder) {
     this._offerService.getOneOffer(id).subscribe((off) => {
       // parsed date to put into formControl
-      const parsedDate = this._commonFuncService.parseDateFromServer(off.workDate);
+      const parsedDate = this._commonFuncService.parseDateFromServer(off.dateOfWork);
 
       // fill FormGroup with offer details from server
       this.form = fb.group({
         clientId: [off.clientId, [Validators.required]],
-        workCity: [off.workCity, [Validators.required]],
-        workStreet: [off.workStreet, [Validators.required]],
-        workPostalCode: [off.workPostalCode, [Validators.required, Validators.pattern("\\d{2}-\\d{3}")]],
-        workDate: [
+        city: [off.city, [Validators.required]],
+        street: [off.street, [Validators.required]],
+        postalCode: [off.postalCode, [Validators.required, Validators.pattern("\\d{2}-\\d{3}")]],
+        dateOfWork: [
           {
             year: Number(parsedDate.year),
             month: Number(parsedDate.month),
@@ -76,9 +76,8 @@ export class OfferEditComponent implements OnInit {
           },
           [Validators.required]
         ],
-        totalPrice: [off.totalPrice],
         description: [off.description],
-        productsLength: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+        productsCount: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
         productsPrice: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
         products: fb.array([]),
       });
@@ -96,8 +95,8 @@ export class OfferEditComponent implements OnInit {
     return this.form.controls;
   };
   // get datepicker form control
-  get workDate() {
-    return this.form.get('workDate') as FormControl;
+  get dateOfWork() {
+    return this.form.get('dateOfWork') as FormControl;
   };
 
   // method for pushing offer products list from server into FormArray
@@ -111,7 +110,7 @@ export class OfferEditComponent implements OnInit {
           quantity: [element.quantity],
           priceEach: [element.priceEach],
           priceTotal: [element.priceTotal],
-          descriptionP: [element.descriptionP],
+          description: [element.description],
         })
       );
     });
@@ -134,8 +133,8 @@ export class OfferEditComponent implements OnInit {
 
 
   onSubmit() {
-    this.workDate.setValue(
-      this._commonFuncService.parseDateToServer(this.workDate)
+    this.dateOfWork.setValue(
+      this._commonFuncService.parseDateToServer(this.dateOfWork)
     );
     const convertedToPostForm = Object.assign(this.form.value, this.offer);
     this.editOffer(this.id, convertedToPostForm);

@@ -56,7 +56,7 @@ export class OfferConvertComponent implements OnInit {
             quantity: [p.quantity],
             priceEach: [p.priceEach],
             priceTotal: [p.priceTotal],
-            descriptionP: [p.descriptionP],
+            descriptionP: [p.description],
             isCheckedP: [this.isChckP],
             isChckQuantity: [this.isChckQuantity],
             isChckPriceEach: [this.isChckPriceEach],
@@ -126,7 +126,7 @@ export class OfferConvertComponent implements OnInit {
 
         case `descriptionP${i}`:
           this.productsArray.controls[i].get('isChckDescriptionP')?.setValue(false);
-          this.productsArray.controls[i].get('descriptionP')?.setValue(this.offer.products[i].descriptionP)
+          this.productsArray.controls[i].get('description')?.setValue(this.offer.products[i].description)
           break;
       }
     }
@@ -141,7 +141,7 @@ export class OfferConvertComponent implements OnInit {
           "quantity": `${e.get("quantity")?.value}`,
           "priceEach": `${e.get("priceEach")?.value}`,
           "priceTotal": `${e.get("priceTotal")?.value}`,
-          "descriptionP": `${e.get("descriptionP")?.value}`,
+          "description": `${e.get("description")?.value}`,
           "offerId": this.id
         };
         selectedProductsArray.push(product)

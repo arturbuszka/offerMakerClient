@@ -30,7 +30,7 @@
         <li class="list-group-item" *ngFor="let offer of offers">
           <h5 (click)="offer.isCollapsed = !offer.isCollapsed" >
             #{{offer.id}} {{offer.client.name}} {{offer.client.nip}},
-            <span>{{offer.workStreet}}, {{offer.workPostalCode}} {{offer.workCity}}
+            <span>{{offer.street}}, {{offer.postalCode}} {{offer.city}}
               <span class="float-right offer-links">
               <a routerLink="/offer/edit/{{offer.id}}" class="pr-2">Edytuj</a>
               <a routerLink="/offer/convert/{{offer.id}}">Konwertuj</a>
@@ -47,11 +47,11 @@
                   </li>
                   <li class="list-group-item">
                     Produktów:
-                    <span class="badge">{{offer.productsLength}}</span>
+                    <span class="badge">{{offer.productsCount}}</span>
                   </li>
                   <li class="list-group-item">
                     Suma cen produktów:
-                    <span class="badge">{{offer.productPrice}}</span>
+                    <span class="badge">{{offer.productsPrice}}</span>
                   </li>
                 </ul>
               </div>
@@ -80,7 +80,7 @@
                       <td>{{product.quantity}}</td>
                       <td>{{product.priceEach}}</td>
                       <td>{{product.priceTotal}}</td>
-                      <td>{{product.descriptionP}}</td>
+                      <td>{{product.description}}</td>
                     </tr>
                   </tbody>
                 </table>

@@ -31,11 +31,11 @@ export class OfferService {
 
   // get all offers method
   getOffer(pageSize: number, pageNumber: number, sortDirection: string): Observable<Items> {
-    return this.http.get<Items>(`${this.apiURL}/offer?pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=CreatedAt&sortDirection=${sortDirection}`);
+    return this.http.get<Items>(`${this.apiURL}/offer?pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=Created&sortDirection=${sortDirection}`);
   };
 
   getFilteredOffer(searchPhrase: string, pageSize: number, pageNumber: number, sortDirection: string): Observable<Items> {
-    return this.http.get<Items>(`${this.apiURL}/offer?searchPhrase=${searchPhrase}&pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=CreatedAt&sortDirection=${sortDirection}`);
+    return this.http.get<Items>(`${this.apiURL}/offer?searchPhrase=${searchPhrase}&pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=Created&sortDirection=${sortDirection}`);
   };
 
   getOneOffer(id: Number): Observable<Offer> {

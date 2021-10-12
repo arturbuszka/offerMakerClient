@@ -5,7 +5,7 @@
           <li class="list-group-item" *ngIf="offer">
             <h5>
               #{{offer.id}} {{offer.client.name}} {{offer.client.nip}},
-              <span>{{offer.workStreet}}, {{offer.workPostalCode}} {{offer.workCity}}</span>
+              <span>{{offer.street}}, {{offer.postalCode}} {{offer.city}}</span>
             </h5>
             <div class="container-fluid">
               <div class="row">
@@ -17,11 +17,11 @@
                     </li>
                     <li class="list-group-item">
                       Produktów:
-                      <span class="badge">{{offer.productsLength}}</span>
+                      <span class="badge">{{offer.productsCount}}</span>
                     </li>
                     <li class="list-group-item">
                       Suma cen produktów:
-                      <span class="badge">{{offer.productPrice}}</span>
+                      <span class="badge">{{offer.productsPrice}}</span>
                     </li>
                   </ul>
                 </div>
@@ -51,7 +51,7 @@
                         <td>{{product.quantity}} <input type="checkbox" (change)="onCheckBoxChange($event, i)" id="quantity{{i}}"></td>
                         <td>{{product.priceEach}} <input type="checkbox" (change)="onCheckBoxChange($event, i)" id="priceEach{{i}}"></td>
                         <td>{{product.priceTotal}} <input type="checkbox" (change)="onCheckBoxChange($event, i)" id="priceTotal{{i}}"></td>
-                        <td>{{product.descriptionP}} <input type="checkbox" (change)="onCheckBoxChange($event, i)" id="descriptionP{{i}}"></td>
+                        <td>{{product.description}} <input type="checkbox" (change)="onCheckBoxChange($event, i)" id="description{{i}}"></td>
                       </tr>
                     </tbody>
                   </table>

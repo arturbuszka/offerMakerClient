@@ -57,8 +57,8 @@ export class OfferCreateComponent implements OnInit {
   }
 
   // get datepicker form control
-  get workDate() {
-    return this.form.get('workDate') as FormControl;
+  get dateOfWork() {
+    return this.form.get('dateOfWork') as FormControl;
   };
 
   // add product to products list
@@ -82,7 +82,7 @@ export class OfferCreateComponent implements OnInit {
   // assign form object to json accepted format
   // post offer using an offer service
   onSubmit() {
-    this.workDate.setValue(this._commonFuncService.parseDateToServer(this.workDate));
+    this.dateOfWork.setValue(this._commonFuncService.parseDateToServer(this.dateOfWork));
     const convertedToPostForm = Object.assign(this.form.value, this.offer);
     this.postOffer(convertedToPostForm);
   };

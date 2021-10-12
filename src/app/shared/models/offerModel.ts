@@ -4,16 +4,15 @@ import { Product } from "./productModel";
 export interface Offer {
     id: number
     clientId: number
-    workCity: string
-    workStreet: string
-    workPostalCode: string
-    workDate: Date;
-    totalPrice: number
+    city: string
+    street: string
+    postalCode: string
+    dateOfWork: Date;
     description: string
-    productsLength: number
-    productPrice: number
+    productsCount: number
+    productsPrice: number
     products: Product[]
-    createdAt: string
+    created: string
     client: Client;
     isCollapsed: boolean;
 };
