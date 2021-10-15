@@ -50,16 +50,19 @@ export class CommonFunctionsService {
   // e.x. date in object: 2021-5-5
   // return 2021-05-05
   parseDateToServer(date: FormControl) {
+    
     let dateString;
     const dateObject = Object.values(date.value);
-
-    if (Number(dateObject[1]) && Number(dateObject[2]) < 10) {
-      dateString = `${dateObject[0]}-0${dateObject[1]}-0${dateObject[2]}`;
-    } else if (Number(dateObject[1]) < 10) {
-      dateString = `${dateObject[0]}-0${dateObject[1]}-${dateObject[2]}`;
-    } else if (Number(dateObject[2]) < 10) {
-      dateString = `${dateObject[0]}-${dateObject[1]}-0${dateObject[2]}`;
+      
+    if (Number(dateObject[1]) < 10)
+    {
+      dateObject[1] = `0${dateObject[1]}`
     }
+    if (Number(dateObject[2]) < 10)
+    {
+      dateObject[2] = `0${dateObject[2]}`
+    }
+    dateString = `${dateObject[0]}-${dateObject[1]}-${dateObject[2]}`
 
     return dateString;
   };

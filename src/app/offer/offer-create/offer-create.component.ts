@@ -8,6 +8,8 @@ import { ClientService } from 'src/app/shared/services/client.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from 'src/app/shared/models/productModel';
 import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
+import { ProductMenuService } from 'src/app/shared/services/product-menu.service';
+
 
 
 
@@ -29,7 +31,7 @@ export class OfferCreateComponent implements OnInit {
     private _fb: FormBuilder,
     private service: OfferService,
     private _clientService: ClientService,
-    private _productService: ProductService,
+    private _productMenuService: ProductMenuService,
     public _commonFuncService: CommonFunctionsService,
 
   ) {}
@@ -84,6 +86,7 @@ export class OfferCreateComponent implements OnInit {
   onSubmit() {
     this.dateOfWork.setValue(this._commonFuncService.parseDateToServer(this.dateOfWork));
     const convertedToPostForm = Object.assign(this.form.value, this.offer);
+    console.log(this.dateOfWork.value)
     this.postOffer(convertedToPostForm);
   };
 
@@ -101,7 +104,7 @@ export class OfferCreateComponent implements OnInit {
 
   // get products for select options
   getProducts() {
-    this._productService.getProducts().subscribe((res) => {
+    this._productMenuService.getProducts().subscribe((res) => {
       this.productsDropDown = res;
     });
   };

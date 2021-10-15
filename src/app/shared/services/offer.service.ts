@@ -46,7 +46,7 @@ export class OfferService {
     return this.http.post(`${this.apiURL}/offer`, offer)
   }
 
-  putOffer(id: Number, offer: Offer) {
-    return this.http.put(`${this.apiURL}/offer/edit/${id}`, offer)
+  putOffer(offer: Offer) {
+    return this.http.put(`${this.apiURL}/offer`, offer)
   }
 }

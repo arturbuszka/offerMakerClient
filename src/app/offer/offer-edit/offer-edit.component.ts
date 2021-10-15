@@ -18,6 +18,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from 'src/app/shared/models/productModel';
 import { ClientService } from 'src/app/shared/services/client.service';
 import { Client } from 'src/app/shared/models/clientModel';
+import { ProductMenuService } from 'src/app/shared/services/product-menu.service';
 
 @Component({
   selector: 'app-offer-edit',
@@ -36,7 +37,8 @@ export class OfferEditComponent implements OnInit {
     private _offerService: OfferService,
     private _clientService: ClientService,
     public _commonFuncService: CommonFunctionsService,
-    private _productService: ProductService,
+    private _productServicea: ProductService,
+    private _productMenuService: ProductMenuService,
     private router: ActivatedRoute
   ) {}
 
@@ -64,6 +66,7 @@ export class OfferEditComponent implements OnInit {
 
       // fill FormGroup with offer details from server
       this.form = fb.group({
+        id: [off.id],
         clientId: [off.clientId, [Validators.required]],
         city: [off.city, [Validators.required]],
         street: [off.street, [Validators.required]],
@@ -137,16 +140,17 @@ export class OfferEditComponent implements OnInit {
       this._commonFuncService.parseDateToServer(this.dateOfWork)
     );
     const convertedToPostForm = Object.assign(this.form.value, this.offer);
-    this.editOffer(this.id, convertedToPostForm);
+    console.log(convertedToPostForm)
+    this.editOffer(convertedToPostForm);
   };
 
-  editOffer(id: Number, offer: Offer) {
-    this._offerService.putOffer(id, offer).subscribe((res) => {});
+  editOffer(offer: Offer) {
+    this._offerService.putOffer(offer).subscribe((res) => {});
   };
 
   // get products for select options
   getProducts() {
-    this._productService.getProducts().subscribe((res) => {
+    this._productMenuService.getProducts().subscribe((res) => {
       this.productsDropDown = res;
     });
   };
