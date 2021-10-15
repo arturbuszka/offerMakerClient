@@ -29,12 +29,12 @@ export class OfferService {
 
 
 
-  // get all offers method
-  getOffer(pageSize: number, pageNumber: number, sortDirection: string): Observable<Items> {
-    return this.http.get<Items>(`${this.apiURL}/offer?pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=Created&sortDirection=${sortDirection}`);
-  };
+  // // get all offers method
+  // getOffer(pageSize: number, pageNumber: number, sortDirection: string): Observable<Items> {
+  //   return this.http.get<Items>(`${this.apiURL}/offer?pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=Created&sortDirection=${sortDirection}`);
+  // };
 
-  getFilteredOffer(searchPhrase: string, pageSize: number, pageNumber: number, sortDirection: string): Observable<Items> {
+  getOffer(searchPhrase: string, pageSize: number, pageNumber: number, sortDirection: string): Observable<Items> {
     return this.http.get<Items>(`${this.apiURL}/offer?searchPhrase=${searchPhrase}&pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=Created&sortDirection=${sortDirection}`);
   };
 
