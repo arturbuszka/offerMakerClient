@@ -60,7 +60,7 @@ export class OfferEditComponent implements OnInit {
   // get offer method
   // id is taken from url
   getOffer(id: Number, fb: FormBuilder) {
-    this._offerService.getOneOffer(id).subscribe((off) => {
+    this._offerService.getOffer(id).subscribe((off) => {
       // parsed date to put into formControl
       const parsedDate = this._commonFuncService.parseDateFromServer(off.dateOfWork);
 
@@ -141,10 +141,10 @@ export class OfferEditComponent implements OnInit {
     );
     const convertedToPostForm = Object.assign(this.form.value, this.offer);
     console.log(convertedToPostForm)
-    this.editOffer(convertedToPostForm);
+    this.putOffer(convertedToPostForm);
   };
 
-  editOffer(offer: Offer) {
+  putOffer(offer: Offer) {
     this._offerService.putOffer(offer).subscribe((res) => {});
   };
 
