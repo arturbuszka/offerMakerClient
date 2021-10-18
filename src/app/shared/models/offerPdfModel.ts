@@ -1,7 +1,8 @@
 import { Client } from "./clientModel";
 import { Product } from "./productModel";
+import { ProductPdf } from "./productPdfModel";
 
-export interface Offer {
+export interface OfferPdf {
     id: number
     clientId: number
     city: string
@@ -11,8 +12,7 @@ export interface Offer {
     description: string
     productsCount: number
     productsPrice: number
-    products: Product[]
+    products: ProductPdf[]
     created?: string
     client: Client;
-    isCollapsed?: boolean;
 };

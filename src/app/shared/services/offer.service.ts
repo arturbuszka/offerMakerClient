@@ -34,15 +34,15 @@ export class OfferService {
   //   return this.http.get<Items>(`${this.apiURL}/offer?pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=Created&sortDirection=${sortDirection}`);
   // };
 
-  getOffer(searchPhrase: string, pageSize: number, pageNumber: number, sortDirection: string): Observable<Items> {
+  getOffers(searchPhrase: string, pageSize: number, pageNumber: number, sortDirection: string): Observable<Items> {
     return this.http.get<Items>(`${this.apiURL}/offer?searchPhrase=${searchPhrase}&pageSize=${pageSize}&pageNumber=${pageNumber}&sortBy=Created&sortDirection=${sortDirection}`);
   };
 
-  getOneOffer(id: Number): Observable<Offer> {
+  getOffer(id: Number): Observable<Offer> {
     return this.http.get<Offer>(`${this.apiURL}/offer/${id}`);
   };
 
-  addOffer(offer: Offer) {
+  postOffer(offer: Offer) {
     return this.http.post(`${this.apiURL}/offer`, offer)
   }
 

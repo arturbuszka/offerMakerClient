@@ -24,7 +24,7 @@ export class ClientService {
       return this.http.get<Client>(`${this.apiURL}/client/${id}`);
     };
 
-    addClient(client: Client) {
+    postClient(client: Client) {
       return this.http.post<Client>(`${this.apiURL}/client`, client)
     }
 

@@ -1,15 +1,15 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Event } from '@angular/router';
 
 
 import { Offer } from 'src/app/shared/models/offerModel';
-import { Product } from 'src/app/shared/models/productModel';
+import { OfferPdf } from 'src/app/shared/models/offerPdfModel';
 import { ProductPdf } from 'src/app/shared/models/productPdfModel';
 import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 import { OfferService } from 'src/app/shared/services/offer.service';
 import { PdfConvertService } from 'src/app/shared/services/pdf-convert.service';
-import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-offer-convert',
@@ -19,9 +19,10 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class OfferConvertComponent implements OnInit {
   productsArray!: FormArray;
   offer!: Offer;
-  id!: Number;
 
-  productsToJson!: ProductPdf[]
+  id!: number;
+  disabled: boolean = true;
+
 
   isChckP: boolean = false;
   isChckQuantity: boolean = false;
@@ -45,29 +46,6 @@ export class OfferConvertComponent implements OnInit {
     // get an offer from server
     this.getOffer(this.id);
   }
-
-  getOffer(id: Number) {
-    this._offerService.getOneOffer(id).subscribe((off) => {
-      this.offer = off;
-      this.offer.products.forEach((p) => {
-        this.productsArray.push(
-          this._fb.group({
-            name: [p.name],
-            quantity: [p.quantity],
-            priceEach: [p.priceEach],
-            priceTotal: [p.priceTotal],
-            descriptionP: [p.description],
-            isCheckedP: [this.isChckP],
-            isChckQuantity: [this.isChckQuantity],
-            isChckPriceEach: [this.isChckPriceEach],
-            isChckPriceTotal: [this.isChckPriceTotal],
-            isChckDescriptionP: [this.isChckDescriptionP],
-          })
-        );
-      });
-    });
-  }
-
 
   onCheckBoxChange(e: any, i: number) {
     const target = e.target;
@@ -111,7 +89,7 @@ export class OfferConvertComponent implements OnInit {
 
         case `quantity${i}`:
           this.productsArray.controls[i].get('isChckQuantity')?.setValue(false);
-          this.productsArray.controls[i].get('quantity')?.setValue(this.offer.products[i].quantity)
+          this.productsArray.controls[i].get('quantity')?.setValue(this.offer.products[i].quantity);
           break;
 
         case `priceEach${i}`:
@@ -132,11 +110,26 @@ export class OfferConvertComponent implements OnInit {
     }
   }
 
-  addHtmlCode(): Object {
-    var selectedProductsArray: any[] = [];
+  postOfferToPdf(): Object {
+    var selectedProductsArray: ProductPdf[] = [];
+    var offerToPost: OfferPdf = {
+      id: this.offer.id,
+      clientId: this.offer.clientId,
+      client: this.offer.client,
+      city: this.offer.city,
+      street: this.offer.street,
+      postalCode: this.offer.postalCode,
+      dateOfWork: this.offer.dateOfWork,
+      description: this.offer.description,
+      productsCount: this.offer.productsCount,
+      productsPrice: this.offer.productsPrice,
+      products: [],
+    }
+
     this.productsArray.controls.forEach((e) => {
       if (e.get('name')?.value != null) {
-        const product = {
+        const product = { 
+          "Id": 1,
           "name": `${e.get("name")?.value}`,
           "quantity": `${e.get("quantity")?.value}`,
           "priceEach": `${e.get("priceEach")?.value}`,
@@ -144,25 +137,54 @@ export class OfferConvertComponent implements OnInit {
           "description": `${e.get("description")?.value}`,
           "offerId": this.id
         };
-        selectedProductsArray.push(product)
+        selectedProductsArray.push(product);
       };
     });
-    const postProductsToPdfConvert = Object.assign(selectedProductsArray, this.productsToJson);
-    console.log(postProductsToPdfConvert)
-    this.postProducts(this.id, postProductsToPdfConvert);
+
+    selectedProductsArray.forEach(element => {
+      offerToPost.products.push(element)
+      });
+
+    console.log(offerToPost);
+
+
+    this.postProducts(this.id, offerToPost);
     
 
-    return postProductsToPdfConvert
+    return offerToPost
   };
 
-  postProducts(id: Number, p: ProductPdf[]) {
-    this._pdfConvertService.addProductsToPdfConvert(id, p).subscribe((res) => {
+  getOffer(id: Number) {
+    this._offerService.getOffer(id).subscribe((off) => {
+      this.offer = off;
+      this.offer.products.forEach((p) => {
+        this.productsArray.push(
+          this._fb.group({
+            id: [p.Id],
+            name: [p.name],
+            quantity: [p.quantity],
+            priceEach: [p.priceEach],
+            priceTotal: [p.priceTotal],
+            description: [p.description],
+            isCheckedP: [this.isChckP],
+            isChckQuantity: [this.isChckQuantity],
+            isChckPriceEach: [this.isChckPriceEach],
+            isChckPriceTotal: [this.isChckPriceTotal],
+            isChckDescriptionP: [this.isChckDescriptionP],
+          })
+        );
+      });
+    });
+  }
+
+  postProducts(id: number, off: OfferPdf) {
+    this._pdfConvertService.generatePdf(off).subscribe((res) => {
       this.getPdf(id);
     });
     
   };
 
-  getPdf(id: Number) {
+  getPdf(id: number) {
     this._pdfConvertService.getPdf(id).subscribe((res) => {
       let blob: any = new Blob([res], {type: 'application/pdf'});
       const url = window.URL.createObjectURL(blob);

@@ -57,7 +57,7 @@
                         <input type="text" class="form-control m-1" id="contact-details" formControlName="phoneNumber">
                     </li>
                     <button class="btn btn-outline-secondary mt-3 ml-2 float-right"  type="button" (click)="deleteClient()" >-</button>
-                    <button class="btn btn-outline-secondary  mt-3  float-right" type="submit" >Ok</button>
+                    <button class="btn btn-outline-secondary  mt-3  float-right" type="submit" [disabled]="form.invalid" >Ok</button>
                     
                 </form>
             </ul>

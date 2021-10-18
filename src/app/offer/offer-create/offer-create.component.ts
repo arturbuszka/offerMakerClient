@@ -40,7 +40,7 @@ export class OfferCreateComponent implements OnInit {
     // create reactive form on init
     this.form = this._commonFuncService.createOfferFormGroup(this._fb)
     // get clients on init, for select options
-    this.getClients();
+    this.getCli();
     // get products on init, for select options
     this.getProducts();
     // check size of nested form array for products
@@ -87,16 +87,16 @@ export class OfferCreateComponent implements OnInit {
     this.dateOfWork.setValue(this._commonFuncService.parseDateToServer(this.dateOfWork));
     const convertedToPostForm = Object.assign(this.form.value, this.offer);
     console.log(this.dateOfWork.value)
-    this.postOffer(convertedToPostForm);
+    this.postOff(convertedToPostForm);
   };
 
   // post offer with subscribe and offer model
-  postOffer(offer: Offer) {
-    this.service.addOffer(offer).subscribe((res) => {});
+  postOff(offer: Offer) {
+    this.service.postOffer(offer).subscribe((res) => {});
   }
 
   // get clients for select options
-  getClients() {
+  getCli() {
     this._clientService.getClients().subscribe((res) => {
       this.clients = res;
     });

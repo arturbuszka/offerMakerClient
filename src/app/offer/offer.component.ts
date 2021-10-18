@@ -4,6 +4,8 @@ import { OfferService } from '../shared/services/offer.service';
 import { Offer } from '../shared/models/offerModel';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Items } from '../shared/models/itemsModel';
+import { catchError, map, tap } from 'rxjs/operators';
+import { observable } from 'rxjs';
 
 
 @Component({
@@ -14,6 +16,7 @@ import { Items } from '../shared/models/itemsModel';
 export class OfferComponent implements OnInit {
 
   offers!: Offer[];
+  offers2!: Offer[];
   items!: Items;
   searchPhraseControl!: FormControl;
   pageSizeControl!: FormControl;
@@ -22,6 +25,8 @@ export class OfferComponent implements OnInit {
   totalItemsCount!: number;
   sortDirection: string = "ASC";
 
+
+  pageSize: number = 5;
   pageNumber: number = 1;
 
   constructor(public service: OfferService, private _fb: FormBuilder) { }
@@ -33,24 +38,14 @@ export class OfferComponent implements OnInit {
     this.sortDirectionControl = this._fb.control("ASC");
     this.getOffers(this.searchPhraseControl.value, this.pageSizeControl.value, this.pageNumber, this.sortDirectionControl.value);
 
+
   }
 
   getOffers(searchPhrase: string, pageSize: number, pageNumber: number, sordDirection: string) {
-    this.service.getOffer(searchPhrase, pageSize, pageNumber, sordDirection)
+    this.service.getOffers(searchPhrase, pageSize, pageNumber, sordDirection)
     .subscribe((res) => {
-      this.offers = res.items
+      this.offers = res.items;
       this.totalItemsCount = res.totalItemsCount
-    })
+    }) 
   }
-
-  // getFilteredOffers(searchPhrase: FormControl, pageSize: FormControl, pageNumber: number, sD: string) {
-  //   this.service.getFilteredOffer(searchPhrase.value, pageSize.value, pageNumber, sD)
-  //   .subscribe((res) => {
-  //     this.offers = res.items
-  //     this.totalItemsCount = res.totalItemsCount;
-  //   })
-  // }
-
-
-
 }

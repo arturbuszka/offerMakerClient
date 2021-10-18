@@ -5,5 +5,5 @@ export class ProductPdf {
     priceEach: string='';
     priceTotal: string='';
     description: string ='';
-    offerId: number = 0;
+    offerId: Number = 0;
 };

@@ -13,7 +13,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ClientComponent implements OnInit {
   clients!: Client[]
-  filteredClients!: Client[]
   client!: Client
   form!: FormGroup
   id!: Number
@@ -64,9 +63,9 @@ export class ClientComponent implements OnInit {
   onSubmitNew() {
     const convertedForm = Object.assign(this.form.value, this.client)
     if(this.id != null) {
-      this.editClient(this.id, convertedForm);
+      this.putClient(this.id, convertedForm);
     }
-    this.addClient(convertedForm);
+    this.postClient(convertedForm);
   }
 
   filter() {
@@ -93,11 +92,11 @@ export class ClientComponent implements OnInit {
     this.service.deleteClient(this.id).subscribe((res) => {})
   }
 
-  addClient(c: Client) {
-    this.service.addClient(c).subscribe((res) => {})
+  postClient(c: Client) {
+    this.service.postClient(c).subscribe((res) => {})
   }
 
-  editClient(id: Number, c: Client) {
+  putClient(id: Number, c: Client) {
     this.service.putClient(id, c).subscribe((res) => {})
   }
 }

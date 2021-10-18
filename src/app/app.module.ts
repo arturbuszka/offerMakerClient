@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -15,7 +15,7 @@ import { OfferCreateComponent } from './offer/offer-create/offer-create.componen
 import { OfferEditComponent } from './offer/offer-edit/offer-edit.component';
 import { ClientComponent } from './offer/client/client.component';
 import { OfferConvertComponent } from './offer/offer-convert/offer-convert.component';
-
+import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,9 @@ import { OfferConvertComponent } from './offer/offer-convert/offer-convert.compo
     ReactiveFormsModule,
     
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

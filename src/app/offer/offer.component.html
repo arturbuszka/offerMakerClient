@@ -5,15 +5,15 @@
       <div class="input-group">
         <input type="search" class="form-control" [formControl]="searchPhraseControl"  />
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" (click)="getOffers(searchPhraseControl.value, pageSizeControl.value, pageNumber, sortDirectionControl.value)">Button</button>
+          <button class="btn btn-outline-secondary" type="button" (click)="getOffers(searchPhraseControl.value, pageSizeControl.value, pageNumber, sortDirectionControl.value)">Szukaj</button>
         </div>
       </div>
     </div>
     <div class="col-md-2">
       <select name="" id="" class="form-control" [formControl]="pageSizeControl" (click)="getOffers(searchPhraseControl.value, pageSizeControl.value, pageNumber, sortDirectionControl.value)">
-        <option selected value="5">5 items per page</option>
-        <option value="10">10 items per page</option>
-        <option value="15">15 items per page</option>
+        <option selected value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
       </select>
     </div>
     <div class="col-md-2">

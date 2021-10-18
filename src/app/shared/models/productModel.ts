@@ -5,5 +5,5 @@ export class Product {
     priceEach: number=0;
     priceTotal: number=0;
     description: string ='';
-    offerId: number = 0;
+    offerId: Number = 0;
 };
