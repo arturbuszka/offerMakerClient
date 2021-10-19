@@ -1,5 +1,4 @@
-import { Client } from "./clientModel";
-import { Product } from "./productModel";
+import { Client } from "../clientModel";
 import { ProductPdf } from "./productPdfModel";
 
 export interface OfferPdf {

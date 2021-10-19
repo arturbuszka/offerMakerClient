@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Offer } from '../models/offerModel';
+import { Offer } from '../../models/offerModel';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { FormGroup } from '@angular/forms';
-import { Items } from '../models/itemsModel';
+import { Items } from '../../models/itemsModel';
 
 
 

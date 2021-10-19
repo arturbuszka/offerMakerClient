@@ -6,6 +6,8 @@ import { OfferCreateComponent } from './offer/offer-create/offer-create.componen
 import { OfferEditComponent } from './offer/offer-edit/offer-edit.component';
 import { OfferConvertComponent } from './offer/offer-convert/offer-convert.component';
 import { ClientComponent } from './offer/client/client.component';
+import { AuthComponent } from './auth/auth.component';
+import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'offer/edit/:id', component: OfferEditComponent },
   { path: 'client', component: ClientComponent },
   { path: 'offer/convert/:id', component: OfferConvertComponent },
+  { path: 'account/login', component: AuthComponent },
+  { path: 'home', component: AppComponent },
 ];
 
 @NgModule({

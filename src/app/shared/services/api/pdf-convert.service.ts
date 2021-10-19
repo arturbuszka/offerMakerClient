@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { OfferPdf } from '../models/offerPdfModel';
+import { OfferPdf } from '../../models/dtos/offerPdfModel';
 
 
 @Injectable({

@@ -91,16 +91,16 @@
                             </thead>
                             <tbody  formArrayName="products"  *ngFor="let product of products.controls; let i=index" >
                                 <tr [formGroupName]="i">
-                                  <td>{{i + 1}}</td>
+                                  <td class="text-center align-middle">{{i + 1}}</td>
                                   <td>
                                     <select formControlName="name" class="form-control">
                                         <option value="{{p.name}}" *ngFor="let p of productsDropDown" >{{p.name}}</option>
                                     </select>
                                 </td>
-                                  <td><input  formControlName="quantity" (blur)="_commonFuncService.checkProductsPrice(form)"></td>
-                                  <td><input  formControlName="priceEach" (blur)="_commonFuncService.checkProductsPrice(form)"></td>
-                                  <td><input  formControlName="priceTotal" ></td>
-                                  <td><input  formControlName="description" ></td>
+                                  <td><input class="w-100 form-control" formControlName="quantity" (blur)="_commonFuncService.checkProductsPrice(form)"></td>
+                                  <td><input class="w-100 form-control" formControlName="priceEach" (blur)="_commonFuncService.checkProductsPrice(form)"></td>
+                                  <td><input class="w-100 form-control"  formControlName="priceTotal" ></td>
+                                  <td><input class="form-control"  formControlName="description" ></td>
                                   <td><button (click)="removeProduct(i)" type="button" class="btn btn-outline-secondary" >-</button></td>
                                 </tr>
                             </tbody>

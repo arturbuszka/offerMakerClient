@@ -1,15 +1,14 @@
-import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Event } from '@angular/router';
 
 
 import { Offer } from 'src/app/shared/models/offerModel';
-import { OfferPdf } from 'src/app/shared/models/offerPdfModel';
-import { ProductPdf } from 'src/app/shared/models/productPdfModel';
+import { OfferPdf } from 'src/app/shared/models/dtos/offerPdfModel';
+import { ProductPdf } from 'src/app/shared/models/dtos/productPdfModel';
 import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
-import { OfferService } from 'src/app/shared/services/offer.service';
-import { PdfConvertService } from 'src/app/shared/services/pdf-convert.service';
+import { OfferService } from 'src/app/shared/services/api/offer.service';
+import { PdfConvertService } from 'src/app/shared/services/api/pdf-convert.service';
 
 @Component({
   selector: 'app-offer-convert',

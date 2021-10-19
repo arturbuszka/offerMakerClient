@@ -9,16 +9,16 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { OfferService } from 'src/app/shared/services/offer.service';
+import { OfferService } from 'src/app/shared/services/api/offer.service';
 import { ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { Offer } from 'src/app/shared/models/offerModel';
 import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
-import { ProductService } from 'src/app/shared/services/product.service';
+import { ProductService } from 'src/app/shared/services/api/product.service';
 import { Product } from 'src/app/shared/models/productModel';
-import { ClientService } from 'src/app/shared/services/client.service';
+import { ClientService } from 'src/app/shared/services/api/client.service';
 import { Client } from 'src/app/shared/models/clientModel';
-import { ProductMenuService } from 'src/app/shared/services/product-menu.service';
+import { ProductMenuService } from 'src/app/shared/services/api/product-menu.service';
 
 @Component({
   selector: 'app-offer-edit',

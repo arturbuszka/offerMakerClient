@@ -16,6 +16,8 @@ import { OfferEditComponent } from './offer/offer-edit/offer-edit.component';
 import { ClientComponent } from './offer/client/client.component';
 import { OfferConvertComponent } from './offer/offer-convert/offer-convert.component';
 import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
+import { AuthComponent } from './auth/auth.component';
+import { AuthInterceptor } from './shared/identity/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
     OfferEditComponent,
     ClientComponent,
     OfferConvertComponent,
-    
+    AuthComponent
     
     
     
@@ -39,7 +41,8 @@ import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
     
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

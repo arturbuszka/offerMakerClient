@@ -1,5 +1,5 @@
 import { Component, OnInit, PipeTransform } from '@angular/core';
-import { ClientService } from 'src/app/shared/services/client.service';
+import { ClientService } from 'src/app/shared/services/api/client.service';
 import { Client } from 'src/app/shared/models/clientModel';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 

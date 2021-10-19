@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from './shared/identity/user.service';
 
 
 @Component({
@@ -9,11 +11,18 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'OfferMakerCGG';
 
+  isLogged: boolean = false;
 
-  constructor() { }
+
+  constructor(public _userService: UserService, public _router: Router) { }
 
   ngOnInit() {
-
+    if (this._userService.getToken() != null) {
+      this.isLogged = true;
+    }
+    else {
+      this._router.navigateByUrl("/account/login")
+    }
   }
 
 

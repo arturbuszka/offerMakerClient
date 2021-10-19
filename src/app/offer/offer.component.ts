@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { OfferService } from '../shared/services/offer.service';
+import { OfferService } from '../shared/services/api/offer.service';
 import { Offer } from '../shared/models/offerModel';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Items } from '../shared/models/itemsModel';
@@ -41,8 +41,8 @@ export class OfferComponent implements OnInit {
 
   }
 
-  getOffers(searchPhrase: string, pageSize: number, pageNumber: number, sordDirection: string) {
-    this.service.getOffers(searchPhrase, pageSize, pageNumber, sordDirection)
+  getOffers(searchPhrase: string, pageSize: number, pageNumber: number, sortDirection: string) {
+    this.service.getOffers(searchPhrase, pageSize, pageNumber, sortDirection)
     .subscribe((res) => {
       this.offers = res.items;
       this.totalItemsCount = res.totalItemsCount
