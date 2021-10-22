@@ -16,8 +16,10 @@ import { OfferEditComponent } from './offer/offer-edit/offer-edit.component';
 import { ClientComponent } from './offer/client/client.component';
 import { OfferConvertComponent } from './offer/offer-convert/offer-convert.component';
 import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
-import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptor } from './shared/identity/auth.interceptor';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AuthInterceptor } from './shared/identity/auth.interceptor';
     OfferEditComponent,
     ClientComponent,
     OfferConvertComponent,
-    AuthComponent
+    LoginComponent,
+    SignupComponent,
+
     
     
     

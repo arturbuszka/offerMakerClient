@@ -1,0 +1,31 @@
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+        <input class="form-control" placeholder="login" formControlName="userName">
+        <div *ngIf="f.userName?.invalid && (f.userName?.dirty || f.userName?.touched)" class="text-danger">
+            <div *ngIf="f.userName?.errors?.required">
+                    Pole jest wymagane
+            </div>   
+        </div>
+        <input class="form-control mt-2" placeholder="e-mail" formControlName="userEmail">
+        <div *ngIf="f.userEmail?.invalid && (f.userEmail?.dirty || f.userEmail?.touched)" class="text-danger">
+            <div *ngIf="f.userEmail?.errors?.required">
+                    Pole jest wymagane
+            </div>   
+        </div>
+        <div class="" formGroupName="passwords">
+            <input class="form-control mt-2" placeholder="hasło" formControlName="userPassword">
+            <div *ngIf="userPass?.invalid && (userPass?.dirty || userPass?.touched)" class="text-danger">
+                <div *ngIf="userPass?.errors?.required">
+                        Pole jest wymagane
+                </div>   
+            </div>
+            <input class="form-control mt-2" placeholder="powtórz hasło"  formControlName="confirmPassword">
+            <div *ngIf="conPass?.invalid && (conPass?.dirty || conPass?.touched)" class="text-danger">
+                <div *ngIf="conPass?.errors?.confirmPasswordMatch">
+                        Hasła muszą sie zgadzać
+                </div>   
+            </div>
+            </div>
+        <button type="submit" class="form-control mt-2 w-75 mx-auto" [disabled]="registerForm.invalid">Zarejestruj się</button>
+    </form>
+</div>

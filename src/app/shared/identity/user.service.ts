@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { authResponse } from './user/authResponse';
 import { loginUser } from './user/loginUserModel';
+import { RegisterUserModel } from './user/registerUserModel';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,11 @@ export class UserService {
 
 
   // api calls
-  postOffer(user: loginUser) {
+  postLogin(user: loginUser) {
     return this.http.post<authResponse>(`${this.apiURL}/account/user/login`, user)
   }
 
-  postOffer1(user: loginUser) {
+  postRegisterUser(user: RegisterUserModel) {
     return this.http.post<any>(`${this.apiURL}/account/user/new`, user)
   }
 

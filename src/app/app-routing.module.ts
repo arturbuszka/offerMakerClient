@@ -6,18 +6,22 @@ import { OfferCreateComponent } from './offer/offer-create/offer-create.componen
 import { OfferEditComponent } from './offer/offer-edit/offer-edit.component';
 import { OfferConvertComponent } from './offer/offer-convert/offer-convert.component';
 import { ClientComponent } from './offer/client/client.component';
-import { AuthComponent } from './auth/auth.component';
+
 import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthGuardService as AuthGuard } from './shared/identity/auth-guard.service';
 
 
 const routes: Routes = [
-  { path: 'offer', component: OfferComponent },
-  { path: 'offer/new', component: OfferCreateComponent },
-  { path: 'offer/edit/:id', component: OfferEditComponent },
-  { path: 'client', component: ClientComponent },
-  { path: 'offer/convert/:id', component: OfferConvertComponent },
-  { path: 'account/login', component: AuthComponent },
-  { path: 'home', component: AppComponent },
+  { path: 'offer', component: OfferComponent, canActivate: [AuthGuard] },
+  { path: 'offer/new', component: OfferCreateComponent, canActivate: [AuthGuard] },
+  { path: 'offer/edit/:id', component: OfferEditComponent, canActivate: [AuthGuard] },
+  { path: 'client', component: ClientComponent, canActivate: [AuthGuard] },
+  { path: 'offer/convert/:id', component: OfferConvertComponent, canActivate: [AuthGuard] },
+  { path: 'account/login', component: LoginComponent },
+  { path: 'account/signup', component: SignupComponent },
+  { path: 'home', component: AppComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

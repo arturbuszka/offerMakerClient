@@ -20,9 +20,8 @@ export class AppComponent implements OnInit {
     if (this._userService.getToken() != null) {
       this.isLogged = true;
     }
-    else {
-      this._router.navigateByUrl("/account/login")
-    }
+
+
   }
 
 

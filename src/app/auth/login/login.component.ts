@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { loginUser } from '../shared/identity/user/loginUserModel';
-import { UserService } from '../shared/identity/user.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/identity/user.service';
+import { loginUser } from 'src/app/shared/identity/user/loginUserModel';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AuthComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   form! : FormGroup
   user!: loginUser
@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
     this.form = this._fb.group({
       username: ['']
     })
-  };
+  }
 
   onSubmit() {
     const convertedForm = Object.assign(this.form.value, this.user)
@@ -30,9 +30,10 @@ export class AuthComponent implements OnInit {
 
 
   postUserInfo(userDetails: loginUser) {
-    this._userService.postOffer(userDetails).subscribe((res) => {
+    this._userService.postLogin(userDetails).subscribe((res) => {
         localStorage.setItem("token", res.token);
         window.location.href="/offer"
     });
   }
+
 }
