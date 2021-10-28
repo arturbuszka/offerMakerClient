@@ -1,0 +1,11 @@
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <input class="form-control mt-2" placeholder="e-mail" formControlName="email" >
+        <div *ngIf="f.email?.invalid && (f.email?.dirty || f.email?.touched)" class="text-danger">
+            <div *ngIf="f.email.errors?.required">
+                    Pole jest wymagane
+            </div>   
+        </div>
+        <button type="submit" class="form-control mt-2 w-75 mx-auto">Ok</button>
+    </form>
+</div>

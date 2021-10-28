@@ -1,0 +1,9 @@
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <div class="" formGroupName="passwords">
+        <input class="form-control" placeholder="password" formControlName="userPassword">
+        <input class="form-control mt-2" placeholder="confirmPassword" formControlName="confirmPassword">
+        </div>
+        <button type="submit" class="form-control mt-2 w-75 mx-auto">Zmień hasło</button>
+    </form>
+</div>

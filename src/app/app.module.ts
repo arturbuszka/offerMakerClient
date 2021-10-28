@@ -19,6 +19,8 @@ import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
 import { AuthInterceptor } from './shared/identity/auth.interceptor';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ForgotComponent } from './auth/forgot/forgot.component';
+import { ForgotChangeComponent } from './auth/forgot-change/forgot-change.component';
 
 
 @NgModule({
@@ -31,10 +33,8 @@ import { SignupComponent } from './auth/signup/signup.component';
     OfferConvertComponent,
     LoginComponent,
     SignupComponent,
-
-    
-    
-    
+    ForgotComponent,
+    ForgotChangeComponent,
   ],
   imports: [
     BrowserModule,

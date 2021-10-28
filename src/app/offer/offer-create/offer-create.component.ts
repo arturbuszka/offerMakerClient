@@ -5,15 +5,9 @@ import { OfferService } from 'src/app/shared/services/api/offer.service';
 import { Offer } from 'src/app/shared/models/offerModel';
 import { Client } from 'src/app/shared/models/clientModel';
 import { ClientService } from 'src/app/shared/services/api/client.service';
-import { ProductService } from 'src/app/shared/services/api/product.service';
 import { Product } from 'src/app/shared/models/productModel';
 import { CommonFunctionsService } from 'src/app/shared/services/common-functions.service';
 import { ProductMenuService } from 'src/app/shared/services/api/product-menu.service';
-
-
-
-
-
 
 @Component({
   selector: 'app-offer-create',

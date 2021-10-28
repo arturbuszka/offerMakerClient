@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, Form, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/identity/user.service';
 import { RegisterUserModel } from 'src/app/shared/identity/user/registerUserModel';
-import { PasswordValidator } from 'src/app/shared/validators/password-validator';
+
 
 @Component({
   selector: 'app-signup',
@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
   constructor(public _fb: FormBuilder, public _userService: UserService) {}
 
 registerForm!: FormGroup
+user!: RegisterUserModel
 
 
   ngOnInit() { 
@@ -62,8 +63,8 @@ confirmPasswordMatch(controlName: string, matchingControlName: string) {
       Password: this.userPass?.value,
       userRole: "Admin"
     };
-    console.log(user);
-    this._userService.postRegisterUser(user).subscribe((res) => {
+    const convertedForm = Object.assign(user)
+    this._userService.postRegisterUser(convertedForm).subscribe((res) => {
       window.location.href="/account/login"
     });
   }

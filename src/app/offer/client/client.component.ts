@@ -1,9 +1,7 @@
-import { Component, OnInit, PipeTransform } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ClientService } from 'src/app/shared/services/api/client.service';
 import { Client } from 'src/app/shared/models/clientModel';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-
 
 
 @Component({
@@ -21,7 +19,7 @@ export class ClientComponent implements OnInit {
   constructor(private service: ClientService, private _fb: FormBuilder) { }
 
   ngOnInit() {
-    // initalize form
+
     this.form = this._fb.group({
       name: ['', [Validators.required]],
       city: ['', [Validators.required]],
@@ -31,7 +29,7 @@ export class ClientComponent implements OnInit {
       email: [''],
       phoneNumber: ['']
     });
-    // get clients list
+
     this.getClients();
     this.searchString = this._fb.control('')
   };
@@ -41,7 +39,6 @@ export class ClientComponent implements OnInit {
     return this.form.controls;
   };
 
-  // get client detail on click
   getClientDetails(id:Number) {
     this.service.getClient(id).subscribe((res) =>{
       this.form = this._fb.group({
@@ -57,9 +54,7 @@ export class ClientComponent implements OnInit {
     })
   }
 
-  // convert form to json format
-  // if client edited => invoke edit method
-  // else add new client
+
   onSubmitNew() {
     const convertedForm = Object.assign(this.form.value, this.client)
     if(this.id != null) {

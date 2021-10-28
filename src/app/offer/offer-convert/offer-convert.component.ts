@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Event } from '@angular/router';
-
+import { FormArray, FormBuilder} from '@angular/forms';
+import { ActivatedRoute} from '@angular/router';
 
 import { Offer } from 'src/app/shared/models/offerModel';
 import { OfferPdf } from 'src/app/shared/models/dtos/offerPdfModel';
@@ -38,11 +37,10 @@ export class OfferConvertComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // param an offer id from url
     this.id = this.router.snapshot.params.id;
+    
     this.productsArray = this._fb.array([]);
 
-    // get an offer from server
     this.getOffer(this.id);
   }
 

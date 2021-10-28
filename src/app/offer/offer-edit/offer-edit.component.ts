@@ -37,7 +37,6 @@ export class OfferEditComponent implements OnInit {
     private _offerService: OfferService,
     private _clientService: ClientService,
     public _commonFuncService: CommonFunctionsService,
-    private _productServicea: ProductService,
     private _productMenuService: ProductMenuService,
     private router: ActivatedRoute
   ) {}
